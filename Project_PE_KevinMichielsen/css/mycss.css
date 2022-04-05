@@ -1,0 +1,39 @@
+body {
+  margin: 25px;
+}
+.block {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+.title{
+    margin-bottom: 15px;
+}
+
+.subtitle{
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+#error{
+  visibility: hidden;
+  background-color: pink;
+  color: red;
+}
+
+#succes {
+  visibility:hidden;
+  background-color: lightgreen;
+  color: green;
+}
+
+#betalingswijze {
+  visibility: hidden;
+  background-color: lightblue;
+  color: blue;
+}

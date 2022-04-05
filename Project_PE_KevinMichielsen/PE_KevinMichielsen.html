@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    
+</head>
+
+<body>
+  
+  <div class="title"><H1>Registreer</H1></div>
+  <div class="subtitle">Meld je aan bij Anoroc Services, wij beschermen jouw software tegen malware!</div>
+  <div class="row g-2">
+    <div class="col-md-8 position-relative">
+      <form class="row g-3">
+        <div class="col-md-6 position-relative">
+          <label for="labelvoornaam" >Voornaam</label>
+          <input type="text" class="form-control" value="voornaam" id="voornaam" required>        
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="labelachternaam" >Achternaam</label>
+          <input type="text" class="form-control" value="achternaam" id="achternaam" required>          
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="username" >Username</label>
+          <div class="input-group">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" value="r0900454" id="username"  required>                     
+          </div>
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="email" >E-mail</label>
+          <input type="email" class="form-control" value="mail@example.be" id="email" required>    
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="wachtwoord1" >Wachtwoord</label>
+          <input type="text" class="form-control" id="wachtwoord1" required>Je wachtwoord moet minstens 8 tekens lang zijn.        
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="wachtwoord2" >Herhaal wachtwoord</label>
+          <input type="text" class="form-control" id="wachtwoord2" required>         
+        </div>
+        <div class="col-md-12 position-relative">
+          <label for="adres" >Adres</label>
+          <input type="text" class="form-control" id="adres" value="Uw adres en huisnummer" required>          
+        </div>   
+        <div class="col-md-6 position-relative">
+          <label for="land" >Land</label>
+          <select class="form-select" id="land" required>
+            <option selected disabled value="">Kies een land</option>
+            <option value="België">België</option>    
+            <option value="Nederland">Nederland</option>  
+            <option value="Duitsland">Duitsland</option> 
+            <option value="Frankrijk">Frankrijk</option>   
+            <option value="Andere">Andere</option>                         
+               </select>
+        </div>
+        <div class="col-md-4 position-relative">
+          <label for="provincie" >Provincie</label>
+          <select class="form-select" id="provincie" required>
+            <option selected disabled value="">Kies een provincie</option>
+            <option value="Antwerpen">Antwerpen</option>
+            <option value="Limburg">Limburg</option>    
+            <option value="Oost-Vlaanderen">Oost-Vlaanderen</option>     
+            <option value="West-Vlaanderen">West-Vlaanderen</option>     
+            <option value="Andere">Andere</option>                     
+          </select>
+          
+        </div>
+        <div class="col-md-2 position-relative">
+            <label for="postcode" >Postcode</label>
+            <input type="text" class="form-control"  id="postcode" required>          
+          </div>    
+        <hr>
+        <div class="col-md-6"><label><strong>Hou me op de hoogte</strong></label>
+        <div>
+          <input class="form-check-input" type="checkbox" id="cbNieuwsbrief">
+          <label class="form-check-label" for="flexCheckDefault">
+            Inschrijven voor onze nieuwsbrief
+          </label>
+        </div>
+        <div>
+          <input class="form-check-input" type="checkbox" id="cbVoorwaarden" >
+          <label class="form-check-label" for="flexCheckChecked">
+            Ik ga akkoord met de algemene voorwaarden.
+          </label>
+        </div>
+      </div>
+      <div class="col-md-5"><label><strong>Betaling</strong></label>
+        <div>
+          <input class="form-check-input" type="checkbox"  id="cbBanking">
+          <label class="form-check-label" for="flexCheckDefault">
+               Banking app          </label>
+        </div>
+        <div>
+          <input class="form-check-input" type="checkbox"  id="cbOverschrijving" >
+          <label class="form-check-label" for="flexCheckChecked">
+              Overschrijving          </label>
+        </div>
+        <div>
+          <input class="form-check-input" type="checkbox"  id="cbVisa" >
+          <label class="form-check-label" for="flexCheckChecked">
+               Visa card          </label>
+        </div>
+        <div>
+          <input class="form-check-input" type="checkbox"  id="cbPaypal" >
+          <label class="form-check-label" for="flexCheckChecked">
+          PayPal         </label>
+        </div>
+      </div>
+      <hr>
+        <div class="col-12">
+          <button id="ok" class="btn btn-primary block" type="submit">Wave your magical wand</button>
+        </div>
+      </form>
+    </div>
+    <div id="result" class="col-md-3 position-relative">
+      <div id="error"><h4>Yikes, errors... <br /> </h4></div>
+      <div id="succes"><h4>Goed gedaan! <br /> </h4> Aaw yeah, je werd geregistreerd.</div>
+      <div id="betalingswijze"><h4>Betalingswijze <br /></h4> Je betalingswijze is </div>
+    </div>
+  </div>
+
+
+     
+      <script>
+        const button = document.getElementById("ok");
+        const result = document.getElementById("result");
+        const succes = document.getElementById("succes");
+        const error = document.getElementById("error");
+        const errors = [];
+        const banking = document.getElementById("cbBanking");
+        const overschrijving = document.getElementById("cbOverschrijving");
+        const visa = document.getElementById("cbVisa");
+        const paypal = document.getElementById("cbPaypal");
+        const betalingswijze = document.getElementById("betalingswijze");
+
+      
+        //check of ingegeven veld leeg is. Indien leeg voeg toe aan array.
+        function checkEmptyField(veld, melding){
+           if(veld.length == 0 ){
+             errors.push(melding);
+           }           
+
+           //check of de standaard values ingegeven zijn. Indien zo voeg toe aan array.
+           switch(veld){
+            case "voornaam":
+            case "achternaam":
+            case "r0900454":
+            case "mail@example.be":
+            case "Uw adres en huisnummer":
+            errors.push(melding);
+            break;
+           }
+        }
+
+        //check op voorwaardes van email. Indien fouten voeg toe aan array.
+        function validateEmail(email){
+          if(email.includes('@')){
+            let indexvalue = email.indexOf('@');
+            let domainname = email.substring(indexvalue+1,email.length);
+            //bron https://stackoverflow.com/questions/61550004/check-if-string-contains-any-letter-javascript-jquery
+           if(!/[a-z0-9]/i.test(domainname.substring(0,1))){
+             return false;
+           }
+           if(!domainname.includes('.')){
+             return false;
+           }
+            return true;
+          }
+          else 
+          {return false;}
+        }
+
+        //check op voorwaardes voor de wachtwoorden. Indien fouten voeg toe aan array.
+        function validatePasswords(wachtwoord1, wachtwoord2){
+          if(wachtwoord1.length <8 )
+          {
+            errors.push("Het wachtwoord moet minstens 8 tekens lang zijn.")
+          }
+          if(wachtwoord1 != wachtwoord2){
+            errors.push("De wachtwoorden zijn niet gelijk.")
+          }
+        }
+
+        //controleer welke payment het is. Indien geen geselecteerd, voeg toe aan array.
+        function validatePayment(veld){
+          
+          if(banking.checked){
+            veld.innerHTML += "Banking.";
+          }
+          if(overschrijving.checked){
+            veld.innerHTML += "Overschrijving.";
+          }
+          if(visa.checked){
+            veld.innerHTML += "Visa.";
+          }
+          if(paypal.checked){
+            veld.innerHTML += "Paypal.";
+          }
+          if(veld.innerHTML == "Je betalingswijze is "){
+            errors.push("Je moet een betalingswijze selecteren.");
+          }
+        }
+
+        //controleer of postcode tussen 1000 & 9999 ligt.
+        function checkPC(veld){
+            if(!(veld >= 1000 && veld <= 9999)){
+              errors.push("De waarde van postcode moet tussen 1000 en 9999 liggen");
+            }
+        }
+       
+        function validateForm(){    
+        const voornaam = document.getElementById("voornaam").value;
+        const achternaam = document.getElementById("achternaam").value;
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const wachtwoord1 = document.getElementById("wachtwoord1").value;
+        const wachtwoord2 = document.getElementById("wachtwoord2").value;
+        const adres = document.getElementById("adres").value;
+        const land = document.getElementById("land").value;
+        const provincie = document.getElementById("provincie").value;
+        const postcode = document.getElementById("postcode").value;
+        const nieuwsbrief = document.getElementById("cbNieuwsbrief");
+        const voorwaarden = document.getElementById("cbVoorwaarden");   
+        checkEmptyField(voornaam,"Het veld voornaam is vereist.");       
+        checkEmptyField(achternaam,"Het veld achternaam is vereist.");        
+        checkEmptyField(username,"Het veld gebruikersnaam is vereist.")   
+        checkEmptyField(email,"Het veld email is vereist.");
+        if(!validateEmail(email)){errors.push("Het veld email is vereist.")};      
+        checkEmptyField(wachtwoord1,"Het veld wachtwoord is vereist");    
+        checkEmptyField(wachtwoord2,"Het veld herhaal wachtwoord is vereist");
+        validatePasswords(wachtwoord1, wachtwoord2);       
+        checkEmptyField(adres,"Adres is vereist.");  
+        checkEmptyField(land,"Land is vereist.");
+        checkEmptyField(provincie,"Provincie is vereist.");
+        checkEmptyField(postcode,"Postcode is vereist.");
+        checkPC(postcode);
+        if(!voorwaarden.checked){
+          errors.push("Je moet de algemene voorwaarden accepteren.");
+        }
+        validatePayment(betalingswijze);
+        if(errors.length == 0){
+          succes.style.visibility = "visible";
+          betalingswijze.style.visibility ="visible";
+        }
+        else{
+          errors.forEach(element => error.innerHTML += element + "<br /> ");
+          error.style.visibility ="visible";
+        }
+        }
+
+
+        button.addEventListener('click',validateForm, false);
+      </script>
+</body>
+
+</html>
